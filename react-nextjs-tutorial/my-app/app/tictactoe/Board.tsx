@@ -26,7 +26,7 @@ export function Board() {
   );
 }
 
-function MyButton({btnIndex, gameState, clickHandler}) {
+function MyButton({btnIndex}) {
 
   const [value, setValue] = useState(btnIndex);
 
