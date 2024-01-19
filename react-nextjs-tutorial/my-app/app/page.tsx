@@ -1,5 +1,6 @@
 import { MyApp1 } from "./MyApp1";
 import { MyApp2 } from "./MyApp2";
+import { MyApp3 } from "./MyApp3";
 
 export default function Page() {
   return (
@@ -11,6 +12,9 @@ export default function Page() {
       <hr />
 
       <MyApp2 />
+      <hr />
+
+      <MyApp3 />
       <hr />
     </div>
   )
