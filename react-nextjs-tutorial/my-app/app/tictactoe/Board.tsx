@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import "./styles.css";
 
+let status:String = "Next player is O";
+
 export function Board() {
 
   const [crossNext, setCrossNext] = useState(false);
@@ -49,6 +51,10 @@ export function Board() {
     winner = isWinner(newSquares);
     if (winner != null) {
       console.log("Winner is " + winner);
+      status = "Winner is " + winner;
+    } else {
+      charr = !crossNext ? 'X' : 'O';
+      status = "Next player is " + charr;
     }
 
     var newHistory = history.slice();
@@ -73,6 +79,10 @@ export function Board() {
         <MyButton btnIndex={8} value={squares[7]} handleClickFnc={() => handleClick(7)} />
         <MyButton btnIndex={9} value={squares[8]} handleClickFnc={() => handleClick(8)} />
       </div>
+
+      <div>
+        <Status status={status} />
+      </div>
     </>
   );
 }
@@ -84,4 +94,8 @@ function MyButton({btnIndex, value, handleClickFnc}) {
   return (
     <button className="square" onClick={handleClickFnc}>{value}</button>
   )
+}
+
+function Status({status}) {
+  return <h4>{status}</h4>
 }
