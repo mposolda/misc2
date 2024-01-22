@@ -62,6 +62,10 @@ export function Board() {
     setHistory(newHistory);
   }
 
+  function handleBack() {
+    console.log("Clicked back");
+  }
+
   return (
     <>
       <div className="board-row">
@@ -83,6 +87,9 @@ export function Board() {
       <div>
         <Status status={status} />
       </div>
+      <div>
+        <BackButton handleClickBack={handleBack} />
+      </div>
     </>
   );
 }
@@ -98,4 +105,8 @@ function MyButton({btnIndex, value, handleClickFnc}) {
 
 function Status({status}) {
   return <h4>{status}</h4>
+}
+
+function BackButton({handleClickBack}) {
+  return <button onClick={handleClickBack}>Back one turn</button>
 }
