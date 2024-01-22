@@ -9,7 +9,7 @@ export function Board() {
 
   const [crossNext, setCrossNext] = useState(false);
   const [squares, setSquares] = useState(Array(9).fill(null));
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([squares]);
 
   function checkLines(i1: number, i2: number, i3: number, squaress) {
     // console.log("checking " + i1 + ", " + i2 + ", " + i3);
@@ -64,6 +64,23 @@ export function Board() {
 
   function handleBack() {
     console.log("Clicked back");
+    if (history.length < 2) {
+      console.log("No history. Returning back");
+      return;
+    }
+
+    // TODO: Maybe I don't need history in a state?
+    var newHistory = history.slice();
+    newHistory.pop();
+    var lastSquares = newHistory[newHistory.length - 1];
+
+    setCrossNext(!crossNext);
+    var charr = !crossNext ? 'X' : 'O';
+    status = "Next player is " + charr;
+
+    setSquares(lastSquares);
+
+    setHistory(newHistory);
   }
 
   return (
