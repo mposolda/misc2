@@ -4,12 +4,14 @@ import { useState } from 'react';
 import "./styles.css";
 
 let status:String = "Next player is O";
+let history: Array[] = [];
+history.push(Array(9).fill(null));
 
 export function Board() {
 
   const [crossNext, setCrossNext] = useState(false);
   const [squares, setSquares] = useState(Array(9).fill(null));
-  const [history, setHistory] = useState([squares]);
+  console.log("Hello, I am here");
 
   function checkLines(i1: number, i2: number, i3: number, squaress) {
     // console.log("checking " + i1 + ", " + i2 + ", " + i3);
@@ -57,9 +59,7 @@ export function Board() {
       status = "Next player is " + charr;
     }
 
-    var newHistory = history.slice();
-    newHistory.push(newSquares);
-    setHistory(newHistory);
+    history.push(newSquares);
   }
 
   function handleBack() {
@@ -69,18 +69,14 @@ export function Board() {
       return;
     }
 
-    // TODO: Maybe I don't need history in a state?
-    var newHistory = history.slice();
-    newHistory.pop();
-    var lastSquares = newHistory[newHistory.length - 1];
+    history.pop();
+    var lastSquares = history[history.length - 1];
 
     setCrossNext(!crossNext);
     var charr = !crossNext ? 'X' : 'O';
     status = "Next player is " + charr;
 
     setSquares(lastSquares);
-
-    setHistory(newHistory);
   }
 
   return (
