@@ -79,22 +79,27 @@ export function Board() {
     setSquares(lastSquares);
   }
 
+  function buttons(row: number) {
+    const buttonss = squares.slice(row, row+3).map((square, indexx) => {
+      const buttonIndex = row*3 + indexx;
+      console.log("row: " + row + ", buttonIndex: " + buttonIndex);
+      return (
+        <MyButton key={buttonIndex} value={squares[buttonIndex]} handleClickFnc={() => handleClick(buttonIndex)} />
+      )
+    });
+    return buttonss;
+  }
+
   return (
     <>
       <div className="board-row">
-        <MyButton value={squares[0]} handleClickFnc={() => handleClick(0)} />
-        <MyButton value={squares[1]} handleClickFnc={() => handleClick(1)} />
-        <MyButton value={squares[2]} handleClickFnc={() => handleClick(2)} />
+        {buttons(0)}
       </div>
       <div className="board-row">
-        <MyButton value={squares[3]} handleClickFnc={() => handleClick(3)} />
-        <MyButton value={squares[4]} handleClickFnc={() => handleClick(4)} />
-        <MyButton value={squares[5]} handleClickFnc={() => handleClick(5)} />
+        {buttons(1)}
       </div>
       <div className="board-row">
-        <MyButton value={squares[6]} handleClickFnc={() => handleClick(6)} />
-        <MyButton value={squares[7]} handleClickFnc={() => handleClick(7)} />
-        <MyButton value={squares[8]} handleClickFnc={() => handleClick(8)} />
+        {buttons(2)}
       </div>
 
       <div>
