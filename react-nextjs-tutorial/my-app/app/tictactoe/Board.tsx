@@ -79,10 +79,21 @@ export function Board() {
     setSquares(lastSquares);
   }
 
+  function renderRows() {
+    let rows = [];
+    for (let i=0 ; i<3 ; i++) {
+      rows.push((
+        <div key={i} className="board-row">
+          {buttons(i)}
+        </div>
+      ));
+    }
+    return rows;
+  }
+
   function buttons(row: number) {
     const buttonss = squares.slice(row, row+3).map((square, indexx) => {
       const buttonIndex = row*3 + indexx;
-      console.log("row: " + row + ", buttonIndex: " + buttonIndex);
       return (
         <MyButton key={buttonIndex} value={squares[buttonIndex]} handleClickFnc={() => handleClick(buttonIndex)} />
       )
@@ -92,15 +103,7 @@ export function Board() {
 
   return (
     <>
-      <div className="board-row">
-        {buttons(0)}
-      </div>
-      <div className="board-row">
-        {buttons(1)}
-      </div>
-      <div className="board-row">
-        {buttons(2)}
-      </div>
+      {renderRows()}
 
       <div>
         <Status status={status} />
