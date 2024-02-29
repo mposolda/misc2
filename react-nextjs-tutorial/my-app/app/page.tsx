@@ -4,6 +4,7 @@ import { MyApp3 } from "./MyApp3";
 import { MyApp4 } from "./MyApp4";
 import { Board } from "./tictactoe/Board";
 import { BoardBonus } from "./tictactoe-bonus/BoardBonus";
+import { ThinkingInReact } from "./thinking-in-react/Thinking";
 
 export default function Page() {
   return (
@@ -28,6 +29,9 @@ export default function Page() {
 
       <h3>Tic-Tac-Toe board - bonus tasks</h3>
       <BoardBonus />
+      <hr />
+
+      <ThinkingInReact />
       <hr />
 
     </div>
