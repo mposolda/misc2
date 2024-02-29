@@ -5,6 +5,7 @@ import "./styles.css";
 
 let status:String = "Next player is O. Move #1";
 let history: Array[] = [];
+let winnerLine: Array[] = [];
 history.push(Array(9).fill(null));
 
 export function BoardBonus() {
@@ -25,7 +26,11 @@ export function BoardBonus() {
     for (var i=0; i<lines.length ; i++) {
       var indexes = lines[i];
       var c = checkLines(indexes[0], indexes[1], indexes[2], squaress);
-      if (c == 'O' || c == 'X') return c;
+      if (c == 'O' || c == 'X') {
+        winnerLine = [indexes[0], indexes[1], indexes[2]];
+        console.log("winnerLine: " + winnerLine);
+        return c;
+      }
     }
     return null;
   }
@@ -76,6 +81,7 @@ export function BoardBonus() {
 
     setCrossNext(!crossNext);
     var charr = !crossNext ? 'X' : 'O';
+    winnerLine = [];
     updateStatus(charr);
 
     setSquares(lastSquares);
@@ -102,7 +108,7 @@ export function BoardBonus() {
     const buttonss = squares.slice(row, row+3).map((square, indexx) => {
       const buttonIndex = row*3 + indexx;
       return (
-        <MyButton key={buttonIndex} value={squares[buttonIndex]} handleClickFnc={() => handleClick(buttonIndex)} />
+        <MyButton key={buttonIndex} buttonIndex={buttonIndex} value={squares[buttonIndex]} handleClickFnc={() => handleClick(buttonIndex)} />
       )
     });
     return buttonss;
@@ -122,12 +128,19 @@ export function BoardBonus() {
   );
 }
 
-function MyButton({ value, handleClickFnc}) {
+function MyButton({buttonIndex, value, handleClickFnc}) {
 
   // const [value, setValue] = useState(btnIndex);
+  function getCssClass() {
+    if (winnerLine.includes(buttonIndex)) {
+      return "square square-winner";
+    } else {
+      return "square";
+    }
+  }
 
   return (
-    <button className="square" onClick={handleClickFnc}>{value}</button>
+    <button className={getCssClass()} onClick={handleClickFnc}>{value}</button>
   )
 }
 

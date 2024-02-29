@@ -26,6 +26,7 @@ export default function Page() {
       <Board />
       <hr />
 
+      <h3>Tic-Tac-Toe board - bonus tasks</h3>
       <BoardBonus />
       <hr />
 
