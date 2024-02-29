@@ -3,6 +3,7 @@ import { MyApp2 } from "./MyApp2";
 import { MyApp3 } from "./MyApp3";
 import { MyApp4 } from "./MyApp4";
 import { Board } from "./tictactoe/Board";
+import { BoardBonus } from "./tictactoe-bonus/BoardBonus";
 
 export default function Page() {
   return (
@@ -24,6 +25,10 @@ export default function Page() {
 
       <Board />
       <hr />
+
+      <BoardBonus />
+      <hr />
+
     </div>
   )
 }
