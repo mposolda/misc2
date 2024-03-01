@@ -47,16 +47,7 @@ export function ThinkingInReact() {
   return (
     <>
       <h3>Thinking In React - tutorial</h3>
-      <table>
-        <tbody>
-        <tr>
-          <InputFilter onFilterChangeHandler={() => onFilterChange()} />
-        </tr>
-        <tr>
-          <StockFilterCheckbox onCheckboxChangeHandler={() => onStockCheckboxChange()} />
-        </tr>
-        </tbody>
-      </table>
+      <FilterArea onFilterChangeHandler={() => onFilterChange()} onCheckboxChangeHandler={() => onStockCheckboxChange()} />
       <br />
       <br />
       <br />
@@ -67,21 +58,21 @@ export function ThinkingInReact() {
   );
 }
 
-function InputFilter({onFilterChangeHandler}) {
-  return (
-    <>
-      <td><b>Input filter: </b></td>
-      <td><input type="text" id="input-filter" name="input-filter" onInput={onFilterChangeHandler} /></td>
-    </>
-  );
-}
+function FilterArea({onFilterChangeHandler, onCheckboxChangeHandler}) {
 
-function StockFilterCheckbox({onCheckboxChangeHandler}) {
   return (
-    <>
-      <td><b>Only stocked: </b></td>
-      <td><input type="checkbox" id="only-stocked-checkbox" name="only-stocked-checkbox" onChange={onCheckboxChangeHandler} /></td>
-    </>
+      <table>
+        <tbody>
+        <tr>
+          <td><b>Input filter: </b></td>
+          <td><input type="text" id="input-filter" name="input-filter" onInput={onFilterChangeHandler} /></td>
+        </tr>
+        <tr>
+          <td><b>Only stocked: </b></td>
+          <td><input type="checkbox" id="only-stocked-checkbox" name="only-stocked-checkbox" onChange={onCheckboxChangeHandler} /></td>
+        </tr>
+        </tbody>
+      </table>
   );
 }
 
