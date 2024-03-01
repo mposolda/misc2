@@ -17,18 +17,6 @@ export function ThinkingInReact() {
   const [inputFilter, setInputFilter] = useState("");
   const [stockCheckboxChecked, setStockCheckboxChecked] = useState(false);
 
-  function onFilterChange() {
-    let val = document.getElementById("input-filter").value;
-    console.log("On filter change: " + val);
-    setInputFilter(val);
-  }
-
-  function onStockCheckboxChange() {
-    let checked = document.getElementById("only-stocked-checkbox").checked;
-    console.log("On checkbox change. Checked: " + checked);
-    setStockCheckboxChecked(checked);
-  }
-
   function getFilteredData(category) {
     console.log("Calling getFilteredData: " + category);
     let filteredData = [];
@@ -47,7 +35,7 @@ export function ThinkingInReact() {
   return (
     <>
       <h3>Thinking In React - tutorial</h3>
-      <FilterArea onFilterChangeHandler={() => onFilterChange()} onCheckboxChangeHandler={() => onStockCheckboxChange()} />
+      <FilterArea onFilterChangeHandler={(inputFilter) => setInputFilter(inputFilter)} onCheckboxChangeHandler={(checked) => setStockCheckboxChecked(checked)} />
       <br />
       <br />
       <br />
@@ -60,16 +48,28 @@ export function ThinkingInReact() {
 
 function FilterArea({onFilterChangeHandler, onCheckboxChangeHandler}) {
 
+  function onFilterChange() {
+    let inputFilter = document.getElementById("input-filter").value;
+    console.log("Input filter changed: " + inputFilter);
+    onFilterChangeHandler(inputFilter);
+  }
+
+  function onCheckboxChange() {
+    let checked = document.getElementById("only-stocked-checkbox").checked;
+    console.log("On checkbox change. Checked: " + checked);
+    onCheckboxChangeHandler(checked);
+  }
+
   return (
       <table>
         <tbody>
         <tr>
           <td><b>Input filter: </b></td>
-          <td><input type="text" id="input-filter" name="input-filter" onInput={onFilterChangeHandler} /></td>
+          <td><input type="text" id="input-filter" name="input-filter" onInput={onFilterChange} /></td>
         </tr>
         <tr>
           <td><b>Only stocked: </b></td>
-          <td><input type="checkbox" id="only-stocked-checkbox" name="only-stocked-checkbox" onChange={onCheckboxChangeHandler} /></td>
+          <td><input type="checkbox" id="only-stocked-checkbox" name="only-stocked-checkbox" onChange={onCheckboxChange} /></td>
         </tr>
         </tbody>
       </table>
